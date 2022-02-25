@@ -55,7 +55,7 @@ bool RFSendData(char packet[], uint8_t len) {
 
     // Makes sure there is a delay of 50ms between every packet.
     uint32_t interval = millis() - lastPacketSentTime;
-    if (interval < 50) {
+    if (interval <= 50) {
         delay(50 - interval);
     }
 
