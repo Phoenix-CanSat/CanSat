@@ -19,7 +19,7 @@ uint32_t lastBeep = 0;
 
 void setup() {
     while (!Serial);
-    // Initializes Serial, SD, RFM, GPS and Sensors.
+    // Initializes Serial and CanSat.
     Serial.begin(115200);
     InitializeBob();
 
