@@ -28,15 +28,15 @@ bool SDInit() {
     sd_init = true;
 
     // Text Initialization missed.
-    SDWrite("\nInitializing Bob...\n", "logger");
+    SDWrite("\nInitializing Bob...\n", "logger", false);
     // Data file header.
-    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity,MagneticFieldStrengthX,MagneticFieldStrengthY,MagneticFieldStrengthZ,GravitationalFieldStrengthX,GravitationalFieldStrengthY,GravitationalFieldStrengthZ", "data");
+    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity,MagneticFieldStrengthX,MagneticFieldStrengthY,MagneticFieldStrengthZ,GravitationalFieldStrengthX,GravitationalFieldStrengthY,GravitationalFieldStrengthZ", "data", true);
 
     return sd_init;
 }
 
 // Store text to given file.
-bool SDWrite(const char text[], const char filename[]) {
+bool SDWrite(const char text[], const char filename[], bool flush) {
 
     if (sd_init) {
         // Open file with given file name.
@@ -45,6 +45,9 @@ bool SDWrite(const char text[], const char filename[]) {
         // Store text in the file and close the file.
         if (file) {
             file.println(text);
+            if (flush == true) {
+                file.flush();
+            }
             file.close();
             return true;
         }

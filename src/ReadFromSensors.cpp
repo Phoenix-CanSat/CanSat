@@ -83,16 +83,11 @@ bool BNOInit() {
     return bnoinit;
 }
 
-// Sets a point in time as starting time.
-void SetStartingTime() {
-    startingTime = millis();
-}
-
 //-----------------------------------------------------Read From Sensors Functions------------------------------------------------------//
 
 // Time in milliseconds (ms).
 unsigned int GetTime() {
-    return millis()-startingTime;
+    return millis()-INITTIME;
 }
 
 // Temperature in Celsius (°C).

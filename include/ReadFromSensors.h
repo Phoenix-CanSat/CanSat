@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 
+// Initialization Time
+#define INITTIME 10000
+
 #define X 0
 #define Y 1
 #define Z 2
@@ -15,9 +18,6 @@
 bool BMEInit();
 bool GPSInit();
 bool BNOInit();
-
-// Sets a point in time as starting time.
-void SetStartingTime();
 
 //-----------------------------------------------------Read From Sensors Functions------------------------------------------------------//
 

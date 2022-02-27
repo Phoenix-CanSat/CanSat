@@ -7,6 +7,8 @@
 #include "RF.h"
 #include "ReadFromSensors.h"
 
+// Time between loops
+#define DELAY 300
 // Estimated time needed for landing.
 #define landingTime 20000
 
@@ -17,20 +19,23 @@
 bool landed = false;
 uint32_t lastBeep = 0;
 
+uint32_t time = 0;
+
 void setup() {
     while (!Serial);
     // Initializes Serial and CanSat.
     Serial.begin(115200);
     InitializeBob();
 
-    // Gets starting time.
-    SetStartingTime();
+    if (millis() <= INITTIME) {
+        delay(INITTIME - millis());
+    }
 }
 
 void loop() {
     
     // Time data was read.
-    unsigned int time = GetTime();
+    time = GetTime();
 
     // Stores sensor values to appropriate variables.
     float temperature = GetTemperature();
@@ -47,10 +52,10 @@ void loop() {
     // Stores all data values to the data string and gets the length of the string.
     char data[225];
     uint8_t datalen = snprintf(data, 225, "%u,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity, magnetic[X], magnetic[Y], magnetic[Z], gravity[X], gravity[Y], gravity[Z]);
-    Say(data);
+    SayNow(data);
 
     // Saves data to "data" file.
-    if (SDWrite(data, "data")) {
+    if (SDWrite(data, "data", true)) {
         Say("\nData successfully stored in SD.");
     } else {
         Say("\nData failed to be stored in SD.");
@@ -78,6 +83,12 @@ void loop() {
             beep();
             lastBeep = time;
         }
+    }
+    
+    // Makes sure there is a delay of 50ms between every packet.
+    uint32_t interval = millis() - time;
+    if (interval <= DELAY) {
+        delay(DELAY - interval);
     }
 
     yield();

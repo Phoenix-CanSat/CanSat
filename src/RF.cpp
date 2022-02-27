@@ -11,7 +11,6 @@
 
 RH_RF95 rf(RFM_CS, RFM_INT);
 bool rfInit_ = false;
-uint32_t lastPacketSentTime = 0;
 uint32_t packetnumber = 0;
 
 // Initializes RFM9X.
@@ -53,12 +52,6 @@ bool RFSendData(char packet[], uint8_t len) {
         return false;
     }
 
-    // Makes sure there is a delay of 50ms between every packet.
-    uint32_t interval = millis() - lastPacketSentTime;
-    if (interval <= 50) {
-        delay(50 - interval);
-    }
-
     // Send the packet.
     bool sent = rf.send((uint8_t*)packet, len);
     // Wait for the packet to be sent.
@@ -68,9 +61,6 @@ bool RFSendData(char packet[], uint8_t len) {
     if (!sent) {
         Say("RF could not send packet to receiver.");
     }
-
-    // Store time since boot the last packet was sent.
-    lastPacketSentTime = millis();
 
     return sent;
 }

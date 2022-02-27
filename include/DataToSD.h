@@ -13,6 +13,6 @@ bool SDInit();
 /// Store text to given file.
 /// @return true if text is stored.
 /// @return false if file could not be opened or SD wasn't initialized.
-bool SDWrite(const char text[], const char filename[]);
+bool SDWrite(const char text[], const char filename[], bool flush);
 
 #endif
