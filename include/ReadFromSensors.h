@@ -19,7 +19,7 @@ bool BNOInit();
 //-----------------------------------------------------Read From Sensors Functions------------------------------------------------------//
 
 /// Reads required value from respective sensor.
-/// @return value in float
+/// @return value in float.
 float GetTemperature();                 // Temperature in Celsius (°C).
 float GetPressure();                    // Pressure in HectoPascal/Millibar (hPa/mbar).
 float GetLatitude();                    // Latitude in Degrees (°).
