@@ -10,8 +10,6 @@
 #include "ReadFromSensors.h"
 #include "Output.h"
 
-unsigned int startingTime = 0;
-
 Adafruit_BME280 BME;
 Adafruit_GPS GPS(&Serial7);
 Adafruit_BNO055 BNO;

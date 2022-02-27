@@ -25,6 +25,7 @@ void setup() {
     // Initializes Serial and CanSat.
     Serial.begin(115200);
     InitializeBob();
+    // Calculates initialization time.
     CalculateInitTime();
 }
 
