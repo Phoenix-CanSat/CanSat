@@ -31,7 +31,7 @@ void setup() {
 void loop() {
     
     // Time data was read.
-    uint32_t time = Time();
+    int time = Time();
 
     // Stores sensor values to appropriate variables.
     float temperature = GetTemperature();
@@ -47,7 +47,7 @@ void loop() {
 
     // Stores all data values to the data string and gets the length of the string.
     char data[225];
-    uint8_t datalen = snprintf(data, 225, "%u,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity, magnetic[X], magnetic[Y], magnetic[Z], gravity[X], gravity[Y], gravity[Z]);
+    uint8_t datalen = snprintf(data, 225, "%d,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity, magnetic[X], magnetic[Y], magnetic[Z], gravity[X], gravity[Y], gravity[Z]);
     SayNow(data);
 
     // Saves data to "data" file.

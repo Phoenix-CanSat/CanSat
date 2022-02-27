@@ -7,6 +7,6 @@
 void CalculateInitTime();
 
 /// @return the time in milliseconds (ms) since completion of initialization.
-uint32_t Time();
+int Time();
 
 #endif

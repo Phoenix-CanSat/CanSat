@@ -2,7 +2,7 @@
 
 #include "Time.h"
 
-uint32_t initTime = 0;
+int initTime = 0;
 
 // Sets the time in milliseconds (ms) after boot as the time since completion of initialization.
 void CalculateInitTime() {
@@ -10,6 +10,6 @@ void CalculateInitTime() {
 }
 
 // Returns the time in milliseconds (ms) since completion of initialization.
-uint32_t Time() {
+int Time() {
     return millis() - initTime;
 }
