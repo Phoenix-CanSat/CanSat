@@ -33,10 +33,6 @@ void setup() {
     // Initializes Serial and CanSat.
     Serial.begin(115200);
     InitializeBob();
-
-    if (millis() <= INITTIME) {
-        delay(INITTIME - millis());
-    }
 }
 
 void loop() {
@@ -92,7 +88,7 @@ void loop() {
         }
     }
     
-    // Makes sure there is a delay of 50ms between every packet.
+    // Makes sure there is a delay between every packet.
     uint32_t interval = millis() - time;
     if (interval <= DELAY) {
         delay(DELAY - interval);

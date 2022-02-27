@@ -11,7 +11,7 @@
 
 RH_RF95 rf(RFM_CS, RFM_INT);
 bool rfInit_ = false;
-uint32_t packetnumber = 0;
+int packetnumber = 0;
 
 // Initializes RFM9X.
 bool RFInit() {
@@ -52,8 +52,11 @@ bool RFSendData(char packet[], uint8_t len) {
         return false;
     }
 
+    char data[225];
+    snprintf(data, 225, "PHX%d:%s", ++packetnumber, packet);
+
     // Send the packet.
-    bool sent = rf.send((uint8_t*)packet, len);
+    bool sent = rf.send((uint8_t*)data, len);
     // Wait for the packet to be sent.
     rf.waitPacketSent();
 
