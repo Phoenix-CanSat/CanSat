@@ -7,6 +7,8 @@
 #include "RF.h"
 #include "ReadFromSensors.h"
 
+// Initialization Time
+#define INITTIME 10000
 // Time between loops
 #define DELAY 300
 // Estimated time needed for landing.
@@ -20,6 +22,11 @@ bool landed = false;
 uint32_t lastBeep = 0;
 
 uint32_t time = 0;
+
+// Returns the time in milliseconds (ms) since completion of initialization.
+uint32_t Time() {
+    return millis() - INITTIME;
+}
 
 void setup() {
     while (!Serial);
@@ -35,7 +42,7 @@ void setup() {
 void loop() {
     
     // Time data was read.
-    time = GetTime();
+    time = Time();
 
     // Stores sensor values to appropriate variables.
     float temperature = GetTemperature();

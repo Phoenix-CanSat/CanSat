@@ -85,11 +85,6 @@ bool BNOInit() {
 
 //-----------------------------------------------------Read From Sensors Functions------------------------------------------------------//
 
-// Time in milliseconds (ms).
-unsigned int GetTime() {
-    return millis()-INITTIME;
-}
-
 // Temperature in Celsius (°C).
 float GetTemperature() {
     // No value if BME280 isn't initialized.

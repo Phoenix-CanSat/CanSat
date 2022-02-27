@@ -3,9 +3,6 @@
 
 #include <Arduino.h>
 
-// Initialization Time
-#define INITTIME 10000
-
 #define X 0
 #define Y 1
 #define Z 2
@@ -20,10 +17,6 @@ bool GPSInit();
 bool BNOInit();
 
 //-----------------------------------------------------Read From Sensors Functions------------------------------------------------------//
-
-/// Reads time since initialization.
-/// @return value in unsigned integer.
-unsigned int GetTime();
 
 /// Reads required value from respective sensor.
 /// @return value in float
