@@ -87,7 +87,7 @@ bool BNOInit() {
 float GetTemperature() {
     // No value if BME280 isn't initialized.
     if (!bmeinit) {
-        return 0;
+        return (float)NAN;
     } else {
         return BME.readTemperature();
     }
@@ -97,7 +97,7 @@ float GetTemperature() {
 float GetPressure() {
     // No value if BME280 isn't initialized.
     if (!bmeinit) {
-        return 0;
+        return (float)NAN;
     } else {
         return BME.readPressure() / 100.0F;
     }
@@ -107,7 +107,7 @@ float GetPressure() {
 float GetLatitude() {
     // No value if GPS isn't initialized or doesn't get a fix.
     if (!gpsinit || !GPS.fix) {
-        return 0;
+        return (float)NAN;
     } else {
             // Parse data from NMEA sentence. If required data is already parsed, enable parsing of new data for later.
             if (GPSWasRead == false) {
@@ -124,7 +124,7 @@ float GetLatitude() {
 float GetLongitude() {
     // No value if GPS isn't initialized or doesn't get a fix.
     if (!gpsinit || !GPS.fix) {
-        return 0;
+        return (float)NAN;
     } else {
         // Parse data from NMEA sentence. If required data is already parsed, enable parsing of new data for later.
         if (GPSWasRead == false) {
@@ -141,7 +141,7 @@ float GetLongitude() {
 float GetAltitude() {
     // No value if BME280 isn't initialized.
     if (!bmeinit) {
-        return 0;
+        return (float)NAN;
     } else {
         return BME.readAltitude(GroundPressure);
     }
@@ -151,7 +151,7 @@ float GetAltitude() {
 float GetHumidity() {
     // No value if BME280 isn't initialized.
     if (!bmeinit) {
-        return 0;
+        return (float)NAN;
     } else {
         return BME.readHumidity();
     }
@@ -161,7 +161,7 @@ float GetHumidity() {
 float GetMagnetic(uint8_t axis) {
     // No value if BNO055 isn't initialized.
     if (!bnoinit) {
-        return 0;
+        return (float)NAN;
     } else {
         // Checks how many values have been read. Can read up to 3, for 3 axis.
         switch (BNOMagRead) {
@@ -187,7 +187,7 @@ float GetMagnetic(uint8_t axis) {
             case Z:
                 return magnetic.z();
             default:
-                return 0;
+                return (float)NAN;
         }
     }
 }
@@ -196,7 +196,7 @@ float GetMagnetic(uint8_t axis) {
 float GetGravity(uint8_t axis) {
     // No value if BNO055 isn't initialized.
     if (!bnoinit) {
-        return 0;
+        return (float)NAN;
     } else {
         // Checks how many values have been read. Can read up to 3, for 3 axis.
         switch (BNOGravRead) {
@@ -222,7 +222,7 @@ float GetGravity(uint8_t axis) {
             case Z:
                 return gravity.z();
             default:
-                return 0;
+                return (float)NAN;
         }
     }
 }
