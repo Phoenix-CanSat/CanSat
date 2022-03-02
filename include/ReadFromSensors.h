@@ -26,7 +26,8 @@ float GetLatitude();                    // Latitude in Degrees (°).
 float GetLongitude();                   // Longitude in Degrees (°).
 float GetAltitude();                    // Altitude from current ground level in Meters (m).
 float GetHumidity();                    // Humidity in Percentage (%).
+float GetAcceleration(uint8_t axis);    // Acceleration in Meters per Second squared (m/s²).
+float GetGyroscope(uint8_t axis);       // Angular Velocity in Radians per Second (r/s).
 float GetMagnetic(uint8_t axis);        // Magnetic Field Strength in micro Teslas (uT).
-float GetGravity(uint8_t axis);         // Gravitational Field Strength in Meters per Second squared (m/s²).
 
 #endif

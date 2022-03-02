@@ -24,10 +24,12 @@ float GroundPressure;
 bool GPSWasRead = false;
 char c;
 
+imu::Vector<3> acceleration;
+imu::Vector<3> gyroscope;
 imu::Vector<3> magnetic;
-imu::Vector<3> gravity;
+uint8_t BNOAccRead = 0;
+uint8_t BNOGyrRead = 0;
 uint8_t BNOMagRead = 0;
-uint8_t BNOGravRead = 0;
 
 //-------------------------------------------------------Miscellaneous Functions--------------------------------------------------------//
 
@@ -157,6 +159,76 @@ float GetHumidity() {
     }
 }
 
+// Acceletation in Meters per Second squared (m/s^2).
+float GetAcceleration(uint8_t axis) {
+    // No value if BNO055 isn't initialized.
+    if (!bnoinit) {
+        return (float)NAN;
+    } else {
+        // Checks how many values have been read. Can read up to 3, for 3 axis.
+        switch (BNOAccRead) {
+            // If no values have been read, get new values from vector.
+            case 0:
+                acceleration = BNO.getVector(Adafruit_BNO055::VECTOR_ACCELEROMETER);
+                BNOAccRead += 1;
+                break;
+            // If 3 values have been read, reset counter.
+            case 3:
+                BNOAccRead = 0;
+                break;
+            // If 1 or 2 values have been read, update counter.
+            default:
+                BNOAccRead += 1;
+        }
+        // Get value of respective axis.
+        switch (axis) {
+            case X:
+                return acceleration.x();
+            case Y:
+                return acceleration.y();
+            case Z:
+                return acceleration.z();
+            default:
+                return (float)NAN;
+        }
+    }
+}
+
+// Angular Velocity in Radians per Second (r/s).
+float GetGyroscope(uint8_t axis) {
+    // No value if BNO055 isn't initialized.
+    if (!bnoinit) {
+        return (float)NAN;
+    } else {
+        // Checks how many values have been read. Can read up to 3, for 3 axis.
+        switch (BNOGyrRead) {
+            // If no values have been read, get new values from vector.
+            case 0:
+                gyroscope = BNO.getVector(Adafruit_BNO055::VECTOR_GYROSCOPE);
+                BNOGyrRead += 1;
+                break;
+            // If 3 values have been read, reset counter.
+            case 3:
+                BNOGyrRead = 0;
+                break;
+            // If 1 or 2 values have been read, update counter.
+            default:
+                BNOGyrRead += 1;
+        }
+        // Get value of respective axis.
+        switch (axis) {
+            case X:
+                return gyroscope.x();
+            case Y:
+                return gyroscope.y();
+            case Z:
+                return gyroscope.z();
+            default:
+                return (float)NAN;
+        }
+    }
+}
+
 // Magnetic Field Strength in micro Teslas (uT).
 float GetMagnetic(uint8_t axis) {
     // No value if BNO055 isn't initialized.
@@ -186,41 +258,6 @@ float GetMagnetic(uint8_t axis) {
                 return magnetic.y();
             case Z:
                 return magnetic.z();
-            default:
-                return (float)NAN;
-        }
-    }
-}
-
-// Gravitational Field Strength in Meters per Second squared (m/s²).
-float GetGravity(uint8_t axis) {
-    // No value if BNO055 isn't initialized.
-    if (!bnoinit) {
-        return (float)NAN;
-    } else {
-        // Checks how many values have been read. Can read up to 3, for 3 axis.
-        switch (BNOGravRead) {
-            // If no values have been read, get new values from vector.
-            case 0:
-                gravity = BNO.getVector(Adafruit_BNO055::VECTOR_GRAVITY);
-                BNOGravRead += 1;
-                break;
-            // If 3 values have been read, reset counter.
-            case 3:
-                BNOGravRead = 0;
-                break;
-            // If 1 or 2 values have been read, update counter.
-            default:
-                BNOGravRead += 1;
-        }
-        // Get value of respective axis.
-        switch (axis) {
-            case X:
-                return gravity.x();
-            case Y:
-                return gravity.y();
-            case Z:
-                return gravity.z();
             default:
                 return (float)NAN;
         }
