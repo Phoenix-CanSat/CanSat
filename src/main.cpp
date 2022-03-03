@@ -8,6 +8,9 @@
 #include "RF.h"
 #include "ReadFromSensors.h"
 
+// Sets minimum time between each loop.
+#define loopDelay 250
+
 // Estimated time needed for landing.
 #define landingTime 20000
 
@@ -18,8 +21,10 @@
 bool landed = false;
 uint32_t lastBeep = 0;
 
+//----------------------------------------------------------Initialize Sensors----------------------------------------------------------//
+
 void setup() {
-    //while (!Serial);
+    while (!Serial);
     // Initializes Serial and CanSat.
     Serial.begin(115200);
     InitializeBob();
@@ -27,9 +32,13 @@ void setup() {
     CalculateInitTime();
 }
 
+//----------------------------------------------------------Enter Endless Loop----------------------------------------------------------//
+
 void loop() {
+
+//--------------------------------------------------------Get Data From Sensors---------------------------------------------------------//
     
-    // Time data was read.
+    // Time data is read.
     uint32_t time = Time();
 
     // Stores sensor values to appropriate variables.
@@ -42,20 +51,23 @@ void loop() {
     float acceleration[3] = {GetAcceleration(X), GetAcceleration(Y), GetAcceleration(Z)};
     float gyroscope[3] = {GetGyroscope(X), GetGyroscope(Y), GetGyroscope(Z)};
     float magnetic[3] = {GetMagnetic(X), GetMagnetic(Y), GetMagnetic(Z)};
-    // TODO:
-    //  chiptemperature
+    /// TODO:
+    ///  chiptemperature
 
     // Stores all data values to the data string and gets the length of the string.
     char data[225];
     uint8_t datalen = snprintf(data, 225, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity, acceleration[X], acceleration[Y], acceleration[Z], gyroscope[X], gyroscope[Y], gyroscope[Z], magnetic[X], magnetic[Y], magnetic[Z]);
     SayNow(data);
 
+//--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
     // Saves data to "data" file.
     if (SDWrite(data, "data", true)) {
         Say("\nData successfully stored in SD.");
     } else {
         Say("\nData failed to be stored in SD.");
     }
+
+//-----------------------------------------------------Send Data To Ground Station------------------------------------------------------//
 
     // Sends data through RFM to receiver.
     if (RFSendData(data, datalen)) {
@@ -64,22 +76,35 @@ void loop() {
         Say("RF failed to send data.\n");
     }
 
-//--------------------------------------------------------------------------------------------------------------------------------------//
-    
+//-------------------------------------------------------Start Buzzer (If Landed)-------------------------------------------------------//
+
     // When landed, sends message and sets "landed" variable to true.
-    if (landed==false && time>=landingTime) {
+    if (landed==false && Time()>=landingTime) {
         Say("Bob has landed.\n");
         landed = true;
     }
 
-    // After landing:
-    if (landed==true) {
-        // Beep in set intervals.
-        if (time-lastBeep>=2*beepDuration) {
-            beep();
-            lastBeep = time;
-        }
+    // After landing, beep in set intervals.
+    if (landed==true && Time()-lastBeep>=2*beepDuration) {
+        beep();
+        lastBeep = Time();
+    }
+
+//---------------------------------------------------------Delay Between Loops----------------------------------------------------------//
+    
+    // Makes sure there is a delay of at least 250ms between every loop.
+    if (Time() - time <= loopDelay) {
+        delay(loopDelay - (Time() - time));
     }
 
     yield();
 }
+
+/// TODO:
+///     Test GPS with battery.
+///     Program Flight Controller (Betaflight).
+///     Create SD support for Ground Station.
+///     Add Identifier with Packet Counter before every packet.
+///     Add support for Packet Identifiers in Ground Station.
+///     Visualise BNO055 data for orientation in 3D.
+///     Calibrate Chip Temperature.

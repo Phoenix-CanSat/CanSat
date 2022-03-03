@@ -12,7 +12,7 @@
 
 Adafruit_BME280 BME;
 Adafruit_GPS GPS(&Serial7);
-Adafruit_BNO055 BNO;
+Adafruit_BNO055 BNO = Adafruit_BNO055(55);
 
 bool bmeinit = false;
 bool gpsinit = false;
@@ -78,6 +78,8 @@ bool GPSInit() {
 // Initializes BNO055
 bool BNOInit() {
     if (BNO.begin()) {
+        BNO.getTemp();
+        BNO.setExtCrystalUse(true);
         bnoinit = true;
     }
     return bnoinit;
