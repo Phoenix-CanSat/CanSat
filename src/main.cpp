@@ -18,7 +18,7 @@
 #define beepDuration 1000
 #define beep() tone(4, 2000, beepDuration)
 
-bool landed = false;
+bool buzzer = false;
 uint32_t lastBeep = 0;
 
 //----------------------------------------------------------Initialize Sensors----------------------------------------------------------//
@@ -60,6 +60,7 @@ void loop() {
     SayNow(data);
 
 //--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
+
     // Saves data to "data" file.
     if (SDWrite(data, "data", true)) {
         Say("\nData successfully stored in SD.");
@@ -78,14 +79,14 @@ void loop() {
 
 //-------------------------------------------------------Start Buzzer (If Landed)-------------------------------------------------------//
 
-    // When landed, sends message and sets "landed" variable to true.
-    if (landed==false && Time()>=landingTime) {
+    // When landed, sends message and starts the buzzer.
+    if (buzzer==false && Time()>=landingTime) {
         Say("Bob has landed.\n");
-        landed = true;
+        buzzer = true;
     }
 
     // After landing, beep in set intervals.
-    if (landed==true && Time()-lastBeep>=2*beepDuration) {
+    if (buzzer==true && Time()-lastBeep>=2*beepDuration) {
         beep();
         lastBeep = Time();
     }
@@ -103,6 +104,7 @@ void loop() {
 /// TODO:
 ///     Test GPS with battery.
 ///     Program Flight Controller (Betaflight).
+///     Use speed of descendance for initializing the buzzer.
 ///     Create SD support for Ground Station.
 ///     Add Identifier with Packet Counter before every packet.
 ///     Add support for Packet Identifiers in Ground Station.
