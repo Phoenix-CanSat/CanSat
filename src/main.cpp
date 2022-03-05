@@ -123,7 +123,7 @@ void loop() {
 //---------------------------------------------------------Delay Between Loops----------------------------------------------------------//
     
     // Makes sure there is a delay of at least 250ms between every loop.
-    if (Time() - time <= loopDelay) {
+    if (Time() - time < loopDelay) {
         delay(loopDelay - (Time() - time));
     }
 
