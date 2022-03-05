@@ -91,9 +91,9 @@ void loop() {
 
         // Checks if Bob is descending.
         if (isDescending == false) {
-            if (velocity < 0 && descend < descentSamples) {
+            if (velocity <= -1 && descend < descentSamples) {
                 descend += 1;
-            } else if (velocity >= 0 && descend < descentSamples) {
+            } else if (velocity > -1 && descend < descentSamples) {
                 descend = 0;
             } else {
                 isDescending = true;
