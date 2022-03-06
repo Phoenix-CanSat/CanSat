@@ -96,6 +96,7 @@ void loop() {
             } else if (velocity > -1 && descend < descentSamples) {
                 descend = 0;
             } else {
+                Say("Bob descending.\n");
                 isDescending = true;
             }
         } else {
