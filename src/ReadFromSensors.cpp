@@ -68,7 +68,6 @@ bool BMEInit() {
 // Initializes GPS
 bool GPSInit() {
     if (GPS.begin(9600)) {
-        GPS.sendCommand("$PGCMD,33,0*6D");              // Turns off antena update data.
         GPS.sendCommand(PMTK_SET_NMEA_UPDATE_10HZ);     // Sets update rate to 10Hz.
         GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);   // Send only RMC and GGA sentences.
         delay(1000);
