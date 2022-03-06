@@ -19,6 +19,7 @@ bool gpsinit = false;
 bool bnoinit = false;
 
 #define PressureSamples 20
+#define PressureSampleDelay 50
 float GroundPressure;
 
 bool GPSWasRead = false;
@@ -37,7 +38,7 @@ uint8_t BNOMagRead = 0;
 void CalculateGroundPressure() {
     for (int i = 0; i < PressureSamples; i++) {
         GroundPressure += BME.readPressure() / 100.0F;
-        delay(50);
+        delay(PressureSampleDelay);
     }
     GroundPressure /= PressureSamples;
 }
