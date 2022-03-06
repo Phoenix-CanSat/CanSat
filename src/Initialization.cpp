@@ -15,41 +15,41 @@ void InitializeBob() {
     
     // Initializes micro SD card.
     if (SDInit()) {
-        Say("SD initialized.");
+        Say("SD init.");
     } else {
-        Say("SD not initialized.");
+        Say("SD not init.");
     }
 
     // Initializes RFM9X.
     if (RFInit()) {
-        Say("RF initialized.");
+        Say("RF init.");
     } else {
-        Say("RF not initialized.");
+        Say("RF not init.");
     }
 
     // Initializes BME280.
     if (BMEInit()) {
-        Say("BME280 initialized.");
+        Say("BME280 init.");
     } else {
-        Say("BME280 not initialized.");
+        Say("BME280 not init.");
     }
 
     // Initializes GPS.
     if (GPSInit()) {
-        Say("GPS initialized.");
+        Say("GPS init.");
     } else {
-        Say("GPS not initialized.");
+        Say("GPS not init.");
     }
 
     // Initializes BNO055.
     if (BNOInit()) {
-        Say("BNO055 initialized.");
+        Say("BNO055 init.");
     } else {
-        Say("BNO055 not initialized.");
+        Say("BNO055 not init.");
     }
 
 //--------------------------------------------------------------------------------------------------------------------------------------//
     
-    Say("\nInitialization Completed.\n");
+    Say("\nBob Initialized.\n");
 
 }

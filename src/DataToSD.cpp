@@ -12,7 +12,6 @@ bool SDInit() {
     
     // If failed, send appropriate message.
     if (!SD.begin(BUILTIN_SDCARD)) {
-        Say("Could not initialize the SD.");
         return false;
     }
 
@@ -43,7 +42,7 @@ bool SDWrite(const char text[], const char filename[], bool flush) {
         File file = SD.open(filename, FILE_WRITE);
 
         // Store text in the file and close the file.
-        if (file) {
+        if (file && file.available()) {
             file.println(text);
             if (flush == true) {
                 file.flush();

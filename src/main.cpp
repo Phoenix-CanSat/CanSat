@@ -68,18 +68,18 @@ void loop() {
 
     // Saves data to "data" file.
     if (SDWrite(data, "data", true)) {
-        Say("\nData successfully stored in SD.");
+        Say("\nSD saved.");
     } else {
-        Say("\nData failed to be stored in SD.");
+        Say("\nSD failed.");
     }
 
 //-----------------------------------------------------Send Data To Ground Station------------------------------------------------------//
 
     // Sends data through RFM to receiver.
     if (RFSendData(data, datalen)) {
-        Say("RF successfully sent data.\n");
+        Say("RF sent.\n");
     } else {
-        Say("RF failed to send data.\n");
+        Say("RF failed.\n");
     }
 
 //-------------------------------------------------------Start Buzzer (If Landed)-------------------------------------------------------//
@@ -105,7 +105,7 @@ void loop() {
             } else if (still < stillSamples && abs(velocity) >= 1) {
                 still = 0;
             } else if (still == stillSamples && abs(velocity) < 1) {
-                Say("Bob has landed.\n");
+                Say("Bob landed.\n");
                 buzzer = true;
             }
         }

@@ -52,6 +52,7 @@ void readGPS() {
     }
     GPSWasRead = true;
 }
+
 //-------------------------------------------------------Initialization Functions-------------------------------------------------------//
 
 //  Initializes BME280

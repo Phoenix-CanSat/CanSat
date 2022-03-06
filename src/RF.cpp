@@ -25,12 +25,12 @@ bool RFInit() {
 
     // If failed, send appropriate message.
     if (!rf.init()) {
-        Say("Could not initialize the RF.");
+        return rfInit_;
     }
 
     // Sets RFM frequency to 433.2
     else if (!rf.setFrequency(433.2)) {
-        Say("Could not set the RF frequency to 433.2 Hz.");
+        Say("RF freq not set.");
     }
     
     else {
@@ -48,7 +48,7 @@ bool RFInit() {
 bool RFSendData(char packet[], uint8_t len) {
 
     if (!rfInit_) {
-        Say("RF is not initialized.");
+        Say("RF off.");
         return false;
     }
 
@@ -59,11 +59,6 @@ bool RFSendData(char packet[], uint8_t len) {
     bool sent = rf.send((uint8_t*)packet, len);
     // Wait for the packet to be sent.
     rf.waitPacketSent();
-
-    // Appropriate message if failed to send packet.
-    if (!sent) {
-        Say("RF could not send packet to receiver.");
-    }
 
     return sent;
 }
