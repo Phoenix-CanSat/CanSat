@@ -42,7 +42,7 @@ bool SDWrite(const char text[], const char filename[], bool flush) {
         File file = SD.open(filename, FILE_WRITE);
 
         // Store text in the file and close the file.
-        if (file && file.available()) {
+        if (file) {
             file.println(text);
             if (flush == true) {
                 file.flush();
