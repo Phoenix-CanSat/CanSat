@@ -29,7 +29,7 @@ bool SDInit() {
     // Text Initialization missed.
     SDWrite("\nInitializing Bob...\n", "logger", false);
     // Data file header.
-    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity,AccelerationX,AccelerationY,AccelerationZ,AngularVelocityX,AngularVelocityY,AngularVelocityZ,MagneticFieldStrengthX,MagneticFieldStrengthY,MagneticFieldStrengthZ", "data", true);
+    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity", "data", true);
 
     return sd_init;
 }

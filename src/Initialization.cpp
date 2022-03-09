@@ -41,13 +41,6 @@ void InitializeBob() {
         Say("GPS not init.");
     }
 
-    // Initializes BNO055.
-    if (BNOInit()) {
-        Say("BNO055 init.");
-    } else {
-        Say("BNO055 not init.");
-    }
-
 //--------------------------------------------------------------------------------------------------------------------------------------//
     
     Say("\nBob Initialized.\n");

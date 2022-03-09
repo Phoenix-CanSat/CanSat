@@ -53,15 +53,12 @@ void loop() {
     float longitude = GetLongitude();
     float altitude = GetAltitude();
     float humidity = GetHumidity();
-    float acceleration[3] = {GetAcceleration(X), GetAcceleration(Y), GetAcceleration(Z)};
-    float gyroscope[3] = {GetGyroscope(X), GetGyroscope(Y), GetGyroscope(Z)};
-    float magnetic[3] = {GetMagnetic(X), GetMagnetic(Y), GetMagnetic(Z)};
     /// TODO:
     ///  chiptemperature
 
     // Stores all data values to the data string and gets the length of the string.
     char data[225];
-    uint8_t datalen = snprintf(data, 225, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity, acceleration[X], acceleration[Y], acceleration[Z], gyroscope[X], gyroscope[Y], gyroscope[Z], magnetic[X], magnetic[Y], magnetic[Z]);
+    uint8_t datalen = snprintf(data, 225, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity);
     SayNow(data);
 
 //--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
@@ -133,10 +130,10 @@ void loop() {
 
 /// TODO:
 ///     Test GPS with battery.
-///     Program Flight Controller (Betaflight).
+///     Make lib folders into submodules.
+///     Program Flight Controller (Inav).
 ///     Prevent SD from overflowing.
 ///     Create SD support for Ground Station.
 ///     Add Identifier with Packet Counter before every packet.
 ///     Add support for Packet Identifiers in Ground Station.
-///     Visualise BNO055 data for orientation in 3D.
 ///     Calibrate Chip Temperature.

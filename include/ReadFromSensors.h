@@ -3,10 +3,6 @@
 
 #include <Arduino.h>
 
-#define X 0
-#define Y 1
-#define Z 2
-
 //-------------------------------------------------------Initialization Functions-------------------------------------------------------//
 
 /// Initializes respective sensor.
@@ -14,7 +10,6 @@
 /// @return false if initialization is unsuccessful.
 bool BMEInit();
 bool GPSInit();
-bool BNOInit();
 
 //-----------------------------------------------------Read From Sensors Functions------------------------------------------------------//
 
@@ -26,8 +21,5 @@ float GetLatitude();                    // Latitude in Degrees (°).
 float GetLongitude();                   // Longitude in Degrees (°).
 float GetAltitude();                    // Altitude from current ground level in Meters (m).
 float GetHumidity();                    // Humidity in Percentage (%).
-float GetAcceleration(uint8_t axis);    // Acceleration in Meters per Second squared (m/s²).
-float GetGyroscope(uint8_t axis);       // Angular Velocity in Radians per Second (r/s).
-float GetMagnetic(uint8_t axis);        // Magnetic Field Strength in micro Teslas (uT).
 
 #endif
