@@ -84,6 +84,5 @@ void loop() {
 ///     Program Flight Controller (Inav).
 ///     Prevent SD from overflowing.
 ///     Create SD support for Ground Station.
-///     Add Identifier with Packet Counter before every packet.
 ///     Add support for Packet Identifiers in Ground Station.
 ///     Calibrate Chip Temperature.
