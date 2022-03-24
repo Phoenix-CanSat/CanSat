@@ -11,10 +11,17 @@
 //----------------------------------------------------------Initialize Sensors----------------------------------------------------------//
 
 void setup() {
+
+    // Initializes Serial.
     while (!Serial);
-    // Initializes Serial and CanSat.
     Serial.begin(115200);
+
+    // Initializes CanSat.
     InitializeBob();
+
+    // Notifies when initialization is complete.
+    initNotif();
+
     // Calculates initialization time.
     CalculateInitTime();
 }
@@ -78,9 +85,7 @@ void loop() {
 }
 
 /// TODO:
-///     Test GPS with battery.
 ///     Make lib folders into submodules.
-///     Program Flight Controller (Inav).
 ///     Prevent SD from overflowing.
 ///     Create SD support for Ground Station.
 ///     Calibrate Chip Temperature.
