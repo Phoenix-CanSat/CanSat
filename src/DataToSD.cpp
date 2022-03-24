@@ -27,15 +27,15 @@ bool SDInit() {
     sd_init = true;
 
     // Text Initialization missed.
-    SDWrite("\nInitializing Bob...\n", "logger", false);
+    SDWrite("\nInitializing Bob...\n", "logger");
     // Data file header.
-    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity", "data", true);
+    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity", "data");
 
     return sd_init;
 }
 
 // Store text to given file.
-bool SDWrite(const char text[], const char filename[], bool flush) {
+bool SDWrite(const char text[], const char filename[]) {
 
     if (sd_init) {
         // Open file with given file name.
@@ -44,9 +44,6 @@ bool SDWrite(const char text[], const char filename[], bool flush) {
         // Store text in the file and close the file.
         if (file) {
             file.println(text);
-            if (flush == true) {
-                file.flush();
-            }
             file.close();
             return true;
         }

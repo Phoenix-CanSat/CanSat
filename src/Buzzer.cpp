@@ -7,7 +7,6 @@
 #define BUZZER_CS 4
 
 #define NOTE_A4 440
-#define NOTE_B4 494
 #define NOTE_D5 587
 #define NOTE_E5 659
 #define NOTE_FS5 740
@@ -41,8 +40,7 @@ int melody[] = {
 
     NOTE_D5, -4, NOTE_E5, -4, NOTE_A4, 4,
     NOTE_E5, -4, NOTE_FS5, -4, NOTE_A5, 16, NOTE_G5, 16, NOTE_FS5, 8,
-    NOTE_D5, -4, NOTE_E5, -4, NOTE_A4, 2,
-    NOTE_A4, 16, NOTE_A4, 16, NOTE_B4, 16, NOTE_D5, 8, NOTE_D5, 16, REST, 4
+    NOTE_D5, -4, NOTE_E5, -4, NOTE_A4, 2, REST, 4
 
 };
 

@@ -8,7 +8,7 @@
 #include "ReadFromSensors.h"
 #include "Buzzer.h"
 
-//----------------------------------------------------------Initialize Sensors----------------------------------------------------------//
+//------------------------------------------------------------Initialization------------------------------------------------------------//
 
 void setup() {
 
@@ -16,7 +16,7 @@ void setup() {
     while (!Serial);
     Serial.begin(115200);
 
-    // Initializes CanSat.
+    // Initializes Systems and Sensors.
     InitializeBob();
 
     // Notifies when initialization is complete.
@@ -25,8 +25,6 @@ void setup() {
     // Calculates initialization time.
     CalculateInitTime();
 }
-
-//----------------------------------------------------------Enter Endless Loop----------------------------------------------------------//
 
 void loop() {
 
@@ -42,18 +40,18 @@ void loop() {
     float longitude = GetLongitude();
     float altitude = GetAltitude();
     float humidity = GetHumidity();
-    /// TODO:
-    ///  chiptemperature
+    // TODO:
+    //  chiptemperature
 
     // Stores all data values to the data string and gets the length of the string.
     char data[225];
     uint8_t datalen = snprintf(data, 225, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity);
-    SayNow(data);
+    Say(data);
 
 //--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
 
     // Saves data to "data" file.
-    if (SDWrite(data, "data", true)) {
+    if (SDWrite(data, "data")) {
         Say("\nSD saved.");
     } else {
         Say("\nSD failed.");
@@ -84,8 +82,8 @@ void loop() {
     yield();
 }
 
-/// TODO:
-///     Make lib folders into submodules.
-///     Prevent SD from overflowing.
-///     Create SD support for Ground Station.
-///     Calibrate Chip Temperature.
+// TODO:
+//     Make lib folders into submodules.
+//     Prevent SD from overflowing.
+//     Create SD support for Ground Station.
+//     Calibrate Chip Temperature.
