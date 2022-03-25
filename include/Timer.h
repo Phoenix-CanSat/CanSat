@@ -9,7 +9,7 @@ void CalculateInitTime();
 /// @return the time in milliseconds (ms) since completion of initialization.
 uint32_t Time();
 
-/// Makes sure there is a delay of at least 250ms between every loop.
-void Wait(uint32_t time);
+// Waits untill the time since the moment given (second argument) is equal to or greater than the time of the first argument.
+void Wait(uint32_t delayMS, uint32_t time);
 
 #endif

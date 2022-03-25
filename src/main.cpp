@@ -8,6 +8,9 @@
 #include "ReadFromSensors.h"
 #include "Buzzer.h"
 
+// Minimum time between each loop.
+#define loopDelay 100
+
 //------------------------------------------------------------Initialization------------------------------------------------------------//
 
 void setup() {
@@ -77,7 +80,7 @@ void loop() {
 //---------------------------------------------------------Delay Between Loops----------------------------------------------------------//
     
     // Makes sure there is a delay of at least 250ms between every loop.
-    Wait(time);
+    Wait(loopDelay, time);
 
     yield();
 }
