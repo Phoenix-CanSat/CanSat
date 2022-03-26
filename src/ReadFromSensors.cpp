@@ -93,16 +93,16 @@ float GetLatitude() {
     if (!gpsinit || !GPS.fix) {
         return (float)NAN;
     } else {
-            // Parse data from NMEA sentence. If required data is already parsed, enable parsing of new data for later.
-            if (GPSWasRead == false) {
-                readGPS();
-            } else {
-                GPSWasRead = false;
-            }
-            // Latitude will have a negative sign for Southern Hemisphere.
-            return GPS.latitude * (1 - 2 * (GPS.lat == 'S'));
+        // Parse data from NMEA sentence. If required data is already parsed, enable parsing of new data for later.
+        if (GPSWasRead == false) {
+            readGPS();
+        } else {
+            GPSWasRead = false;
         }
+        // Latitude will have a negative sign for Southern Hemisphere.
+        return GPS.latitude * (1 - 2 * (GPS.lat == 'S'));
     }
+}
 
 // Longitude in Degrees (°).
 float GetLongitude() {
