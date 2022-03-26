@@ -3,7 +3,6 @@
 #include <SD.h>
 
 #include "DataToSD.h"
-#include "Output.h"
 
 bool sd_init = false;
 

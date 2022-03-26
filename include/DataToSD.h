@@ -2,7 +2,6 @@
 #define DATATOSD_FUNCTIONS_H
 
 #include <Arduino.h>
-#include <SD.h>
 
 /// Initializes SD card.
 /// Removes previously created files with names "data" and "logger" if they exist.
