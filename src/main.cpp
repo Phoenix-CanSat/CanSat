@@ -9,7 +9,7 @@
 #include "Buzzer.h"
 
 // Minimum time between each loop.
-#define loopDelay 100
+#define loopDelay 200
 
 //------------------------------------------------------------Initialization------------------------------------------------------------//
 

@@ -8,14 +8,15 @@
 #include "ReadFromSensors.h"
 #include "Output.h"
 
+#define PressureSamples 20
+#define PressureSampleDelay 50
+
 Adafruit_BME280 BME;
 Adafruit_GPS GPS(&Serial7);
 
 bool bmeinit = false;
 bool gpsinit = false;
 
-#define PressureSamples 20
-#define PressureSampleDelay 50
 float GroundPressure;
 
 bool GPSWasRead = false;
@@ -38,7 +39,9 @@ void readGPS() {
         while (!GPS.newNMEAreceived()) {
             c = GPS.read();
         }
-        GPS.parse(GPS.lastNMEA());
+        if (i > 2) {
+            GPS.parse(GPS.lastNMEA());
+        }
     }
     GPSWasRead = true;
 }
@@ -57,8 +60,9 @@ bool BMEInit() {
 // Initializes GPS
 bool GPSInit() {
     if (GPS.begin(9600)) {
-        GPS.sendCommand(PMTK_SET_NMEA_UPDATE_10HZ);     // Sets update rate to 10Hz.
         GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);   // Send only RMC and GGA sentences.
+        GPS.sendCommand(PMTK_SET_NMEA_UPDATE_5HZ);     // Sets update rate to 5Hz.
+        GPS.sendCommand(PGCMD_ANTENNA);                 // Request updates on antenna status.
         delay(1000);
         gpsinit = true;
     }
@@ -100,7 +104,7 @@ float GetLatitude() {
             GPSWasRead = false;
         }
         // Latitude will have a negative sign for Southern Hemisphere.
-        return GPS.latitude * (1 - 2 * (GPS.lat == 'S'));
+        return (float)GPS.latitude * (1 - 2 * (GPS.lat == 'S'));
     }
 }
 
@@ -117,7 +121,7 @@ float GetLongitude() {
             GPSWasRead = false;
         }
         // Latitude will have a negative sign for Western Hemisphere.
-        return GPS.longitude * (1-2*(GPS.lon=='W'));
+        return (float)GPS.longitude * (1 - 2 * (GPS.lon == 'W'));
     }
 }
 
