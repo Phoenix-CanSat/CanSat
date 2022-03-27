@@ -53,7 +53,7 @@ void loop() {
 
 //--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
 
-    // Saves data to "data" file.
+    // Saves data to "DATA" file.
     if (SDWrite(data, "data")) {
         Say("\nSD saved.");
     } else {

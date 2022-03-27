@@ -14,7 +14,7 @@ bool SDInit() {
         return false;
     }
 
-    // Removes previously created files if they exist (only "data" and "logger").
+    // Removes previously created files if they exist (only "DATA" and "LOGGER").
     if (SD.exists("data")) {
         SD.remove("data");
     }
