@@ -52,7 +52,7 @@ int divider = 0, noteDuration = 0;
 
 void initNotif() {
     
-    for (int thisNote = 0; thisNote < notes * 2; thisNote = thisNote + 2) {
+    for (int thisNote = 0; thisNote < notes * 2; thisNote += 2) {
         // calculates the duration of each note
         divider = melody[thisNote + 1];
         if (divider > 0) {

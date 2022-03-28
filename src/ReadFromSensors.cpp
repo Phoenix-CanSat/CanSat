@@ -94,7 +94,7 @@ float GetPressure() {
 // Latitude in Degrees (°).
 float GetLatitude() {
     // No value if GPS isn't initialized or doesn't get a fix.
-    if (!gpsinit || !GPS.fix) {
+    if (!gpsinit) {
         return (float)NAN;
     } else {
         // Parse data from NMEA sentence. If required data is already parsed, enable parsing of new data for later.
@@ -111,7 +111,7 @@ float GetLatitude() {
 // Longitude in Degrees (°).
 float GetLongitude() {
     // No value if GPS isn't initialized or doesn't get a fix.
-    if (!gpsinit || !GPS.fix) {
+    if (!gpsinit) {
         return (float)NAN;
     } else {
         // Parse data from NMEA sentence. If required data is already parsed, enable parsing of new data for later.
