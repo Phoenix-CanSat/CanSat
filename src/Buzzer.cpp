@@ -4,7 +4,7 @@
 #include "Output.h"
 #include "Timer.h"
 
-#define BUZZER_CS 4
+#define BUZZER_CS 5
 
 #define NOTE_A4 440
 #define NOTE_D5 587
@@ -110,7 +110,7 @@ void setPhase(float alt, uint32_t time) {
 
 void Beep() {
     if (buzzer == true && Time() - lastBeep >= 2 * beepDuration) {
-        tone(BUZZER_CS, 3000, beepDuration);
+        tone(BUZZER_CS, 4000, beepDuration);
         lastBeep = Time();
     }
 }
