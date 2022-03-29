@@ -1,6 +1,3 @@
-[submodule "Adafruit_BME280_Library"]
-	path = Adafruit_BME280_Library
-	url = https://github.com/adafruit/Adafruit_BME280_Library.git
 [submodule "Adafruit_BusIO"]
 	path = Adafruit_BusIO
 	url = https://github.com/adafruit/Adafruit_BusIO.git
@@ -16,3 +13,6 @@
 [submodule "lib/SD"]
 	path = lib/SD
 	url = https://github.com/PaulStoffregen/SD.git
+[submodule "lib/Adafruit_BME280_Library"]
+	path = lib/Adafruit_BME280_Library
+	url = https://github.com/adafruit/Adafruit_BME280_Library.git
