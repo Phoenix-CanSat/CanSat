@@ -86,7 +86,5 @@ void loop() {
 }
 
 // TODO:
-//     Make lib folders into submodules.
 //     Prevent SD from overflowing.
-//     Create SD support for Ground Station.
 //     Calibrate Chip Temperature.
