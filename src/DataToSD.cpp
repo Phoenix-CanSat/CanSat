@@ -14,21 +14,21 @@ bool SDInit() {
         return false;
     }
 
-    // Removes previously created files if they exist (only "DATA" and "LOGGER").
-    if (SD.exists("data")) {
-        SD.remove("data");
+    // Removes previously created files if they exist (only "data.csv" and "logger.csv").
+    if (SD.exists("data.csv")) {
+        SD.remove("data.csv");
     }
-    if (SD.exists("logger")) {
-        SD.remove("logger");
+    if (SD.exists("logger.csv")) {
+        SD.remove("logger.csv");
     }
 
     // Initialization successful.
     sd_init = true;
 
     // Text Initialization missed.
-    SDWrite("\nInitializing Bob...\n", "logger");
+    SDWrite("\nInitializing Bob...\n", "logger.csv");
     // Data file header.
-    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity", "data");
+    SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity", "data.csv");
 
     return sd_init;
 }

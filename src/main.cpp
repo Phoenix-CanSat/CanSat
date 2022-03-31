@@ -9,7 +9,7 @@
 #include "Buzzer.h"
 
 // Minimum time between each loop.
-#define loopDelay 200
+#define loopDelay 50
 
 //------------------------------------------------------------Initialization------------------------------------------------------------//
 
@@ -53,8 +53,8 @@ void loop() {
 
 //--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
 
-    // Saves data to "DATA" file.
-    if (SDWrite(data, "data")) {
+    // Saves data to "data.csv" file.
+    if (SDWrite(data, "data.csv")) {
         Say("\nSD saved.");
     } else {
         Say("\nSD failed.");
