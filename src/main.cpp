@@ -16,7 +16,7 @@
 void setup() {
 
     // Initializes Serial.
-    while (!Serial);
+    //while (!Serial);
     Serial.begin(115200);
 
     // Initializes Systems and Sensors.
@@ -47,8 +47,8 @@ void loop() {
     //  chiptemperature
 
     // Stores all data values to the data string and gets the length of the string.
-    char data[225];
-    uint8_t datalen = snprintf(data, 225, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity);
+    char data[200];
+    snprintf(data, 200, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity);
     Say(data);
 
 //--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
@@ -63,7 +63,7 @@ void loop() {
 //-----------------------------------------------------Send Data To Ground Station------------------------------------------------------//
 
     // Sends data through RFM to receiver.
-    if (RFSendData(data, datalen)) {
+    if (RFSendData(data)) {
         Say("RF sent.\n");
     } else {
         Say("RF failed.\n");
@@ -86,5 +86,4 @@ void loop() {
 }
 
 // TODO:
-//     Prevent SD from overflowing.
 //     Calibrate Chip Temperature.

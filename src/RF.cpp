@@ -45,16 +45,16 @@ bool RFInit() {
 }
 
 // Sends given packet text through RFM to receiver.
-bool RFSendData(char packet[], uint8_t len) {
+bool RFSendData(char packet[]) {
 
     if (!rfInit_) {
         Say("RF off.");
         return false;
     }
-
+    
     char data[225];
-    snprintf(data, 225, "PHX%lu,%s", ++packetnumber, packet);
-
+    uint8_t len = snprintf(data, 225, "PHX%lu,%s", ++packetnumber, packet);
+    
     // Send the packet.
     bool sent = rf.send((uint8_t*)data, len);
 
