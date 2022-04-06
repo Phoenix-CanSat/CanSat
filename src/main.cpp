@@ -49,24 +49,24 @@ void loop() {
     // Stores all data values to the data string and gets the length of the string.
     char data[200];
     snprintf(data, 200, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity);
-    Say(data);
+    Serial.println(data);
 
 //--------------------------------------------------------Store Data To SD Card---------------------------------------------------------//
 
     // Saves data to "data.csv" file.
     if (SDWrite(data, "data.csv")) {
-        Say("\nSD saved.");
+        Say("SD 1");
     } else {
-        Say("\nSD failed.");
+        Say("SD 0");
     }
 
 //-----------------------------------------------------Send Data To Ground Station------------------------------------------------------//
 
     // Sends data through RFM to receiver.
     if (RFSendData(data)) {
-        Say("RF sent.\n");
+        Say("RF 1\n");
     } else {
-        Say("RF failed.\n");
+        Say("RF 0\n");
     }
 
 //----------------------------------------------------------------Buzzer----------------------------------------------------------------//
