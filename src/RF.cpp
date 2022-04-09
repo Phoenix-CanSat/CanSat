@@ -53,7 +53,7 @@ bool RFSendData(char packet[]) {
     }
     
     char data[225];
-    uint8_t len = snprintf(data, 225, "PHX%lu,%s", ++packetnumber, packet);
+    uint8_t len = snprintf(data, 225, "PHX,%lu,%s", ++packetnumber, packet);
     
     // Send the packet.
     bool sent = rf.send((uint8_t*)data, len);
