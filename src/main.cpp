@@ -16,14 +16,10 @@
 void setup() {
 
     // Initializes Serial.
-    //while (!Serial);
     Serial.begin(115200);
 
     // Initializes Systems and Sensors.
     InitializeBob();
-
-    // Notifies when initialization is complete.
-    initNotif();
 
     // Calculates initialization time.
     CalculateInitTime();

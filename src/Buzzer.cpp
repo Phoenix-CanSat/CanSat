@@ -50,6 +50,17 @@ int notes = sizeof(melody) / sizeof(melody[0]) / 2;
 
 int divider = 0, noteDuration = 0;
 
+// Plays appropriate sound depending on wether a system is initialized or not.
+void Init(bool success) {
+    if (success) {
+        tone(BUZZER_CS, NOTE_A5, beepDuration/2);
+    } else {
+        tone(BUZZER_CS, NOTE_A4, beepDuration/2);
+    }
+    delay(beepDuration);
+}
+
+// Rickrolls the person who turns on Bob.
 void initNotif() {
     
     for (int thisNote = 0; thisNote < notes * 2; thisNote += 2) {
@@ -75,6 +86,7 @@ void initNotif() {
     }
 }
 
+// Sets what phase Bob is in (ascending/descending/landed).
 void setPhase(float alt, uint32_t time) {
     // Checks if buzzer is already on.
     if (buzzer == false) {
@@ -108,6 +120,7 @@ void setPhase(float alt, uint32_t time) {
     }
 }
 
+// After landing, beep in set intervals.
 void Beep() {
     if (buzzer == true && Time() - lastBeep >= 2 * beepDuration) {
         tone(BUZZER_CS, 4000, beepDuration);

@@ -62,8 +62,6 @@ bool GPSInit() {
     if (GPS.begin(9600)) {
         GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);   // Send only RMC and GGA sentences.
         GPS.sendCommand(PMTK_SET_NMEA_UPDATE_5HZ);      // Sets update rate to 5Hz.
-        GPS.sendCommand(PGCMD_ANTENNA);                 // Request updates on antenna status.
-        delay(1000);
         gpsinit = true;
     }
     return gpsinit;
