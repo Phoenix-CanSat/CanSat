@@ -20,8 +20,8 @@ We are a team composed of 8 students of the [Model High School “Evangeliki Sch
 ## Want to reach us?
 If you have any question, please feel free to reach us in one of the following ways:
 * __Email__
-* __Facebook__ 
-* __Twitter__ (our social media pages are in process)
+* [__Instagram__](https://www.instagram.com/phoenix_cansat/)
+* [__Facebook__](https://www.facebook.com/phoenixcansatteam/?refsrc=deprecated&_rdc=1&_rdr)
 
 &nbsp;
 ## How to use our code
