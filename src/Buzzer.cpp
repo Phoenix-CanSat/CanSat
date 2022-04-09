@@ -19,8 +19,10 @@
 // Duration of a whole note in ms
 #define wholenote 60000*4/Tempo
 
-#define descentSamples 12
-#define stillSamples 4
+#define descentSamples 10
+#define stillSamples 10
+
+#define fallingVelocityLimit 2
 
 // Set buzzer beeping.
 #define beepDuration 1000
@@ -91,13 +93,13 @@ void setPhase(float alt, uint32_t time) {
     // Checks if buzzer is already on.
     if (buzzer == false) {
         // Calculates descending speed.
-        float velocity = (alt - lastAltitude) / (float)(time - lastTime);
+        float fallingVelocity = (alt - lastAltitude) / (float)(time - lastTime);
 
         // Checks if Bob is descending.
         if (isDescending == false) {
-            if (velocity <= -1 && descend < descentSamples) {
+            if (fallingVelocity >= fallingVelocityLimit && descend < descentSamples) {
                 descend += 1;
-            } else if (velocity > -1 && descend < descentSamples) {
+            } else if (fallingVelocity < fallingVelocityLimit && descend < descentSamples) {
                 descend = 0;
             } else {
                 Say("Bob descending.\n");
@@ -105,11 +107,11 @@ void setPhase(float alt, uint32_t time) {
             }
         } else {
             // When landed, sends message and starts the buzzer.
-            if (still < stillSamples && abs(velocity) < 1) {
+            if (still < stillSamples && abs(fallingVelocity) < fallingVelocityLimit) {
                 still += 1;
-            } else if (still < stillSamples && abs(velocity) >= 1) {
+            } else if (still < stillSamples && abs(fallingVelocity) >= fallingVelocityLimit) {
                 still = 0;
-            } else if (still == stillSamples && abs(velocity) < 1) {
+            } else if (still == stillSamples && abs(fallingVelocity) < fallingVelocityLimit) {
                 Say("Bob landed.\n");
                 buzzer = true;
             }
