@@ -99,21 +99,22 @@ void setPhase(float alt, uint32_t time) {
         if (isDescending == false) {
             if (fallingVelocity >= fallingVelocityLimit && descend < descentSamples) {
                 descend += 1;
-            } else if (fallingVelocity < fallingVelocityLimit && descend < descentSamples) {
-                descend = 0;
-            } else {
+            } else if (fallingVelocity >= fallingVelocityLimit && descend >= descentSamples) {
                 Say("Bob descending.\n");
                 isDescending = true;
+            } else {
+                descend = 0;
             }
+
         } else {
             // When landed, sends message and starts the buzzer.
-            if (still < stillSamples && abs(fallingVelocity) < fallingVelocityLimit) {
+            if (abs(fallingVelocity) < fallingVelocityLimit && still < stillSamples) {
                 still += 1;
-            } else if (still < stillSamples && abs(fallingVelocity) >= fallingVelocityLimit) {
-                still = 0;
-            } else if (still == stillSamples && abs(fallingVelocity) < fallingVelocityLimit) {
+            } else if (abs(fallingVelocity) < fallingVelocityLimit && still >= stillSamples) {
                 Say("Bob landed.\n");
                 buzzer = true;
+            } else {
+                still = 0;
             }
         }
 
