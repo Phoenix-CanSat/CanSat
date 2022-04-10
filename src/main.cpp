@@ -39,7 +39,6 @@ void loop() {
     float longitude = GetLongitude();
     float altitude = GetAltitude();
     float humidity = GetHumidity();
-    // TODO: chiptemperature
 
     // Stores all data values to the data string and gets the length of the string.
     char data[200];
