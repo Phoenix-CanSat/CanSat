@@ -10,7 +10,7 @@
 #define RFM_INT 2
 
 RH_RF95 rf(RFM_CS, RFM_INT);
-bool rfInit_ = false;
+bool rf_init = false;
 uint32_t packetnumber = 0;
 
 // Initializes RFM9X.
@@ -25,7 +25,7 @@ bool RFInit() {
 
     // If failed, send appropriate message.
     if (!rf.init()) {
-        return rfInit_;
+        return rf_init;
     }
 
     // Sets RFM frequency to 433.2
@@ -38,28 +38,29 @@ bool RFInit() {
         rf.setTxPower(23, false);
 
         //Initialization successful.
-        rfInit_ = true;
+        rf_init = true;
     }
 
-    return rfInit_;
+    return rf_init;
 }
 
 // Sends given packet text through RFM to receiver.
 bool RFSendData(char packet[]) {
 
-    if (!rfInit_) {
-        Say("RF off.");
-        return false;
+    if (rf_init) {
+
+        // Add packet identifier and packet counter to packet.
+        char data[225];
+        uint8_t len = snprintf(data, 225, "PHX,%lu,%s", ++packetnumber, packet);
+
+        // Send the packet.
+        bool sent = rf.send((uint8_t*)data, len);
+
+        // Wait for the packet to be sent.
+        rf.waitPacketSent();
+
+        return sent;
     }
-    
-    char data[225];
-    uint8_t len = snprintf(data, 225, "PHX,%lu,%s", ++packetnumber, packet);
-    
-    // Send the packet.
-    bool sent = rf.send((uint8_t*)data, len);
 
-    // Wait for the packet to be sent.
-    rf.waitPacketSent();
-
-    return sent;
+    return false;
 }
