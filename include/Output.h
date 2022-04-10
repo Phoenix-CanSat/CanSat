@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 /// Prints the given text to the Serial.
-/// Stores it in "logger.csv" file for debugging.
+/// Stores it in "logger.txt" file for debugging.
 void Say(const char text[]);
 
 #endif
