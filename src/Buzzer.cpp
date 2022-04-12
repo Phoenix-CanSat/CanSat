@@ -55,9 +55,9 @@ int divider = 0, noteDuration = 0;
 // Plays appropriate sound depending on wether a system is initialized or not.
 void Init(bool success) {
     if (success) {
-        tone(BUZZER_CS, NOTE_A5, beepDuration/2);
+        tone(BUZZER_CS, 4000, beepDuration/2);
     } else {
-        tone(BUZZER_CS, NOTE_A4, beepDuration/2);
+        tone(BUZZER_CS, 3000, beepDuration/2);
     }
     delay(beepDuration);
 }
