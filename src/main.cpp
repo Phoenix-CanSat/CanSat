@@ -9,7 +9,7 @@
 #include "Buzzer.h"
 
 // Minimum time between each loop.
-#define loopDelay 50
+#define loopDelay 500
 
 //------------------------------------------------------------Initialization------------------------------------------------------------//
 
@@ -74,7 +74,7 @@ void loop() {
 
 //---------------------------------------------------------Delay Between Loops----------------------------------------------------------//
     
-    // Makes sure there is a delay of at least 250ms between every loop.
+    // Makes sure there is a delay of at least 500ms between every loop.
     Wait(loopDelay, time);
 
     yield();
