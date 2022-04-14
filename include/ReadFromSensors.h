@@ -21,5 +21,6 @@ float GetLatitude();                    // Latitude in Degrees (°).
 float GetLongitude();                   // Longitude in Degrees (°).
 float GetAltitude();                    // Altitude from current ground level in Meters (m).
 float GetHumidity();                    // Humidity in Percentage (%).
+float GetInternalTemperature();         // Internal Temperature in Celsius (°C).
 
 #endif

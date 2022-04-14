@@ -39,10 +39,11 @@ void loop() {
     float longitude = GetLongitude();
     float altitude = GetAltitude();
     float humidity = GetHumidity();
+    float internalTemperature = GetInternalTemperature();
 
     // Stores all data values to the data string and gets the length of the string.
     char data[200];
-    snprintf(data, 200, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity);
+    snprintf(data, 200, "%lu,%.2f,%.2f,%.4f,%.4f,%.2f,%.2f,%.2f", time, temperature, pressure, latitude, longitude, altitude, humidity, internalTemperature);
     Serial.println(data);
     Serial.flush();
 

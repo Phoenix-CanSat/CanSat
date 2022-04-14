@@ -142,3 +142,8 @@ float GetHumidity() {
         return BME.readHumidity();
     }
 }
+
+// Internal Temperature in Celsius (°C).
+float GetInternalTemperature() {
+    return tempmonGetTemp();
+}
