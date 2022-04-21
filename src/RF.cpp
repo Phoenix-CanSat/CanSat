@@ -45,16 +45,21 @@ bool RFInit() {
 }
 
 // Sends given packet text through RFM to receiver.
-bool RFSendData(char packet[]) {
+bool RFSendData(const char text[], bool info = false) {
 
     if (rf_init) {
 
         // Add packet identifier and packet counter to packet.
-        char data[225];
-        uint8_t len = snprintf(data, 225, "PHX,%lu,%s", ++packetnumber, packet);
+        char packet[225];
+        uint8_t len;
+        if (!info) {
+            len = snprintf(packet, 225, "PHX,%lu,%s", ++packetnumber, text);
+        } else {
+            len = snprintf(packet, 225, "PHXINFO,%s", text);
+        }
 
         // Send the packet.
-        bool sent = rf.send((uint8_t*)data, len);
+        bool sent = rf.send((uint8_t*)packet, len);
 
         // Wait for the packet to be sent.
         rf.waitPacketSent();

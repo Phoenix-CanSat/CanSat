@@ -100,7 +100,7 @@ void setPhase(float alt, uint32_t time) {
             if (fallingVelocity >= fallingVelocityLimit && descend < descentSamples) {
                 descend += 1;
             } else if (fallingVelocity >= fallingVelocityLimit && descend >= descentSamples) {
-                Say("Bob descending.\n");
+                Shout("Bob descending.\n");
                 isDescending = true;
             } else {
                 descend = 0;
@@ -111,7 +111,7 @@ void setPhase(float alt, uint32_t time) {
             if (abs(fallingVelocity) < fallingVelocityLimit && still < stillSamples) {
                 still += 1;
             } else if (abs(fallingVelocity) < fallingVelocityLimit && still >= stillSamples) {
-                Say("Bob landed.\n");
+                Shout("Bob landed.\n");
                 buzzer = true;
             } else {
                 still = 0;

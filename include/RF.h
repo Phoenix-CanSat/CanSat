@@ -12,6 +12,6 @@ bool RFInit();
 /// Sends given text/packet through RFM to receiver with a minimum delay of 50ms between each packet.
 /// @return true if packet is sent.
 /// @return false if packet could not be sent or RFM wasn't initialized.
-bool RFSendData(char packet[]);
+bool RFSendData(const char text[], bool info = false);
 
 #endif
