@@ -26,7 +26,7 @@ bool SDInit() {
     sd_init = true;
 
     // Text Initialization missed.
-    SDWrite("\nInitializing Bob...\n", "logger.txt");
+    SDWrite("\nInitializing Mel...\n", "logger.txt");
     // Data file header.
     SDWrite("Time,Temperature,Pressure,Latitude,Longitude,Altitude,Humidity,InternalTemperature", "data.csv");
 

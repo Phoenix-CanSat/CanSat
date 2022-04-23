@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-/// Initializes SD, RFM, GPS and Sensors.
-void InitializeBob();
+/// Initializes Systems and Sensors.
+void InitializeMel();
 
 #endif

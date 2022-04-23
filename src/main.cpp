@@ -19,7 +19,7 @@ void setup() {
     Serial.begin(115200);
 
     // Initializes Systems and Sensors.
-    InitializeBob();
+    InitializeMel();
 
     // Calculates initialization time.
     CalculateInitTime();
@@ -67,7 +67,7 @@ void loop() {
 
 //----------------------------------------------------------------Buzzer----------------------------------------------------------------//
 
-    // Sets what phase Bob is in (ascending/descending/landed).
+    // Sets what phase Mel is in (ascending/descending/landed).
     setPhase(altitude, time);
 
     // After landing, beep in set intervals.

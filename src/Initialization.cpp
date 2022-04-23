@@ -7,9 +7,9 @@
 #include "ReadFromSensors.h"
 #include "Buzzer.h"
 
-void InitializeBob() {
+void InitializeMel() {
     
-    Say("\nInitializing Bob...\n");
+    Say("\nInitializing Mel...\n");
 
 //--------------------------------------------------------------------------------------------------------------------------------------//
     
@@ -51,7 +51,7 @@ void InitializeBob() {
 
 //--------------------------------------------------------------------------------------------------------------------------------------//
 
-    Say("\nBob Initialized.\n");
+    Say("\nMel Initialized.\n");
 
     // Notifies when initialization is complete.
     initNotif();

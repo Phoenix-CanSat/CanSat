@@ -62,7 +62,7 @@ void Init(bool success) {
     delay(beepDuration);
 }
 
-// Rickrolls the person who turns on Bob.
+// Rickrolls the person who turns on Mel.
 void initNotif() {
     
     for (int thisNote = 0; thisNote < notes * 2; thisNote += 2) {
@@ -88,19 +88,19 @@ void initNotif() {
     }
 }
 
-// Sets what phase Bob is in (ascending/descending/landed).
+// Sets what phase Mel is in (ascending/descending/landed).
 void setPhase(float alt, uint32_t time) {
     // Checks if buzzer is already on.
     if (buzzer == false) {
         // Calculates descending speed.
         float fallingVelocity = (alt - lastAltitude) / (float)(time - lastTime);
 
-        // Checks if Bob is descending.
+        // Checks if Mel is descending.
         if (isDescending == false) {
             if (fallingVelocity >= fallingVelocityLimit && descend < descentSamples) {
                 descend += 1;
             } else if (fallingVelocity >= fallingVelocityLimit && descend >= descentSamples) {
-                Shout("Bob descending.\n");
+                Shout("Mel descending.\n");
                 isDescending = true;
             } else {
                 descend = 0;
@@ -111,7 +111,7 @@ void setPhase(float alt, uint32_t time) {
             if (abs(fallingVelocity) < fallingVelocityLimit && still < stillSamples) {
                 still += 1;
             } else if (abs(fallingVelocity) < fallingVelocityLimit && still >= stillSamples) {
-                Shout("Bob landed.\n");
+                Shout("Mel landed.\n");
                 buzzer = true;
             } else {
                 still = 0;
