@@ -4,7 +4,7 @@
 #include "Output.h"
 #include "Timer.h"
 
-#define BUZZER_CS 5
+#define BUZZER_CS 4
 
 #define NOTE_A4 440
 #define NOTE_D5 587
