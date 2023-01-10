@@ -118,7 +118,7 @@ float GetLongitude() {
         } else {
             GPSWasRead = false;
         }
-        // Latitude will have a negative sign for Western Hemisphere.
+        // Longitude will have a negative sign for Western Hemisphere.
         return (float)GPS.longitude * (1 - 2 * (GPS.lon == 'W'));
     }
 }
